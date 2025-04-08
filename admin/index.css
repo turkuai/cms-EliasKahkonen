@@ -74,7 +74,17 @@
 }
 
 .column3 {
+    gap: 5px;
     display: flex;
+    flex-direction: column;
     width: 33.3%;
-    justify-content: center;
+}
+
+a {
+    margin: auto;
+}
+
+#linkbtn {
+    width: 30%;
+    margin: auto;
 }
