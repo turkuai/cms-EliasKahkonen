@@ -85,6 +85,101 @@
 }
 
         </style>
+<script>
+     let editHeadingMode = false
+        
+    function handleHeadingEdit() {
+        console.log("handleHeadingEdit", editHeadingMode)
+        
+        editHeadingMode = !editHeadingMode
+
+        console.log("after change", editHeadingMode)
+
+        const headingElement = document.getElementById("title")
+        const inputElement = document.getElementById("titleInput")
+
+        headingElement.hidden = editHeadingMode
+        inputElement.hidden = !editHeadingMode
+
+        if (!editHeadingMode) {
+           const title = inputElement.value
+           headingElement.innerHTML = title
+           localStorage.setItem("title", title)
+
+        }
+
+        document.getElementById("titleButton").innerHTML = editHeadingMode ? "Save" : "Edit"
+
+    }    
+    
+    const savedLinks = localStorage.getItem("links-list")
+
+    let linksList = savedLinks ? JSON.parse(savedLinks) : []
+
+    function handleLoad() {
+        const title = localStorage.getItem("title")
+        document.getElementById("title").innerHTML = title
+        document.getElementById("titleInput").value = title
+
+        const listElement = document.getElementById("link-list")
+
+        linksList.forEach(linkJson => {
+
+        const aElement = document.createElement("a")
+        aElement.innerHTML = linkJson.name
+        aElement.href = linkJson.href
+
+        listElement.appendChild(aElement)
+
+        });
+
+   
+
+        
+    }
+
+    addEventListener("load", handleLoad)
+
+
+
+
+    function handleAddLink(e) {
+        const button = e.target
+        const editMode = button.innerHTML == "+"
+        const inputHidden = !editMode
+
+        const refInput = document.getElementById("linkRef")
+        const nameInput = document.getElementById("linkName")
+
+        refInput.hidden = inputHidden
+        nameInput.hidden = inputHidden
+
+        if (editMode) {
+            button.innerHTML = "Save"
+        } else {
+            button.innerHTML = "+"
+        }
+
+        const listElement = document.getElementById("link-list")
+
+        const aElement = document.createElement("a")
+        aElement.innerHTML = nameInput.value
+        aElement.href = refInput.value
+
+        listElement.appendChild(aElement)
+
+        const linkJson = {
+            href: refInput.value
+            ,name: nameInput.value
+        }
+
+        linksList.push(linkJson)
+
+        localStorage.setItem("links-list", JSON.stringify(linksList))
+
+        
+    }
+    </script>
     </head>
     <body>
         <div class="ylapalkki">
@@ -123,7 +218,9 @@
         </div>
         <div class="footer">
             <div class="column1">
-                <h1>Admin Footer otsikko</h1>
+                <h1 id="title"></h1>
+                <input id="titleInput" hidden>
+                <button id="titleButton" onclick="handleHeadingEdit()">Edit</button>
                 <p>Lorem ipsum dolor sit amet. Eum doloremque dolor quo totam dicta sed voluptatem rerum
                     ut isteaccusantium autlaudantium adipisci aut debitis harum eos quae quae.
                     Et veritatis provident eum perferendis quis cum dolorum quaerat ut molestias obcaecati sed quia labore!</p>
@@ -136,12 +233,12 @@
                     <a href="#" id="Blog">Blog</a>
                 </div> 
             </div>
-            <div class="column3">
+            <div id="link-list" class="column3">
                 <div class="footer-linkit">
-                    <a href="#" id="Facebook">Facebook</a>
-                    <a href="#" id="LinkedIn">LinkedIn</a>
-                    <a href="#" id="GitHub">GitHub</a>
-                </div>    
+                    <input id="linkRef" placeholder="URL" hidden>
+                    <input id="linkName" placeholder="name" hidden>
+                </div>
+                <button onclick="handleAddLink(event)">+</button>
             </div>
         </div>
     </body>

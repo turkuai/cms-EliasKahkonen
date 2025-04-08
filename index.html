@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>Pääsivu</title>
+        <link rel="stylesheets" href="index.css">
         <style>
 .ylapalkki {
     display: flex;
@@ -85,6 +86,16 @@
 }
 
         </style>
+    <script>
+
+       function handleLoad() {
+           const title = localStorage.getItem("title")
+           document.getElementById("title").innerHTML = title
+       }
+   
+       addEventListener("load", handleLoad)
+
+       </script>
     </head>
     <body>
         <div class="ylapalkki">
@@ -123,7 +134,7 @@
         </div>
         <div class="footer">
             <div class="column1">
-                <h1>Footer otsikko</h1>
+                <h1 id="title"></h1>
                 <p>Lorem ipsum dolor sit amet. Eum doloremque dolor quo totam dicta sed voluptatem rerum
                     ut isteaccusantium autlaudantium adipisci aut debitis harum eos quae quae.
                     Et veritatis provident eum perferendis quis cum dolorum quaerat ut molestias obcaecati sed quia labore!</p>
