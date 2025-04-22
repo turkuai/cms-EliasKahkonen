@@ -1,0 +1,90 @@
+.ylapalkki {
+    display: flex;
+    border-top: 4px solid black;
+    border-right: 4px solid black;
+    border-left: 4px solid black;
+    gap: 40px;
+}
+#kuva1 {
+    border: 4px solid black;
+    margin: 5px;
+}
+
+.linkit {
+    display: flex;
+    gap: 100px;
+    align-items: center;
+    font-size: 25px;
+}
+
+.section {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    display: flex;
+    border-top: 4px solid black;
+    border-right: 4px solid black;
+    border-left: 4px solid black;
+}
+
+.textimage1 {
+    display: flex;
+    align-items: center; 
+    gap: 20px;
+    padding: 20px;
+    border: solid 4px black;
+}
+
+.teksti {
+    display: flex;
+    flex-direction: column;
+    flex: 1; 
+    font-size: 20px;
+}
+
+.footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center; 
+    gap: 20px;
+    padding: 20px 20px 40px 20px;
+    border: solid 4px black;
+}
+
+.footer-linkit {
+    font-size: 20px;
+    gap: 30px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.column1 {
+    display: flex;
+    flex-direction: column;
+    width: 33.3%;
+}
+
+.column2 {
+    display: flex;
+    width: 33.3%;
+    justify-content: center;
+}
+
+.column3 {
+    gap: 5px;
+    display: flex;
+    flex-direction: column;
+    width: 33.3%;
+}
+
+a {
+    margin: auto;
+}
+
+#linkbtn {
+    width: 30%;
+    margin: auto;
+}
