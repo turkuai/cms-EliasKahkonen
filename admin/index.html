@@ -37,26 +37,23 @@
     let linksList = savedLinks ? JSON.parse(savedLinks) : []
 
     function handleLoad() {
-    const title = localStorage.getItem("title");
-    document.getElementById("title").innerHTML = title;
-    document.getElementById("titleInput").value = title;
+        const title = localStorage.getItem("title")
+        document.getElementById("title").innerHTML = title
+        document.getElementById("titleInput").value = title
 
-    const savedLogo = localStorage.getItem("logo-url");
-    if (savedLogo) {
-        document.getElementById("kuva1").src = savedLogo;
-        document.getElementById("logoInput").value = savedLogo;
+        const listElement = document.getElementById("link-list")
+
+        linksList.forEach(linkJson => {
+
+        const aElement = document.createElement("a")
+        aElement.innerHTML = linkJson.name
+        aElement.href = linkJson.href
+
+        listElement.appendChild(aElement)
+
+        });
+ 
     }
-
-    const listElement = document.getElementById("link-list");
-
-    linksList.forEach(linkJson => {
-        const aElement = document.createElement("a");
-        aElement.innerHTML = linkJson.name;
-        aElement.href = linkJson.href;
-        listElement.appendChild(aElement);
-    });
-}
-
 
     addEventListener("load", handleLoad)
     
@@ -96,30 +93,6 @@
         localStorage.setItem("links-list", JSON.stringify(linksList))
 
     }
-
-    let editLogoMode = false;
-
-function handleLogoEdit() {
-    console.log("handleLogoEdit", editLogoMode);
-    
-    editLogoMode = !editLogoMode;
-    
-    const imgElement = document.getElementById("kuva1");
-    const inputElement = document.getElementById("logoInput");
-    const button = document.getElementById("logoBtn");
-
-    imgElement.hidden = editLogoMode;
-    inputElement.hidden = !editLogoMode;
-
-    if (!editLogoMode) {
-        const newUrl = inputElement.value;
-        imgElement.src = newUrl;
-        localStorage.setItem("logo-url", newUrl);
-    }
-
-    button.innerHTML = editLogoMode ? "Save" : "Edit";
-}
-
     </script>
     </head>
     <body>
