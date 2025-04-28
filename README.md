@@ -7,3 +7,6 @@ Sivujen domainit:
 Github: https://turkuai.github.io/cms-EliasKahkonen/
 Netlify: https://68074bb62fda4757770f3287--eliasindex.netlify.app/
 
+Koulun palvelin:
+http://taikukkula.fi/EliasKahkonen/cms/
+
