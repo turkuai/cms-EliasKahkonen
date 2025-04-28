@@ -4,7 +4,16 @@
         <title>Pääsivu</title>
         <link rel="stylesheet" href="index.css">
 
-        <script>
+        <footer id="siteFooter"></footer>
+
+<script>
+// Hae alatunnisteteksti ja näytä se footerissa
+fetch('load_footer.php')
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('siteFooter').innerText = data.text;
+    });
+
             function handleLoad() {
                 // Load footer title
                 const title = localStorage.getItem("title");
@@ -164,13 +173,6 @@
                     ut isteaccusantium autlaudantium adipisci aut debitis harum eos quae quae.
                     Et veritatis provident eum perferendis quis cum dolorum quaerat ut molestias obcaecati sed quia labore!</p>
                 <p>@ 2024, Companys name, All rights reserved</p>    
-            </div>
-            <div class="column2"> 
-                <div class="footer-linkit">
-                    <a href="#" id="Home">Home</a>
-                    <a href="#" id="About">About</a>
-                    <a href="#" id="Blog">Blog</a>
-                </div> 
             </div>
             <div class="column3">
                 <div class="footer-linkit">

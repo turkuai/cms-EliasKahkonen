@@ -1,9 +1,43 @@
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $footerText = $_POST['footerText'] ?? '';
+
+    $data = [
+        'text' => $footerText
+    ];
+
+    file_put_contents("../footer.json", json_encode($data, JSON_PRETTY_PRINT));
+    echo "Tallennus onnistui!";
+}
+?>
+
+
 <!DOCTYPE html>
 <html>
     <head>
         <title>Admin Pääsivu</title>
         <link rel="stylesheet" href="index.css">
+        <form method="post" action="index.php">
+    <label for="footerText">Alatunnisteen teksti:</label><br>
+    <input type="text" id="footerText" name="footerText"><br><br>
+    <input type="submit" value="Tallenna">
+</form>
+
+<form action="upload_logo.php" method="post" enctype="multipart/form-data">
+    <label>Valitse logokuva:</label><br>
+    <input type="file" name="logo"><br><br>
+    <input type="submit" value="Lataa Logo">
+</form>
+
+
 <script>
+// Hae nykyinen alatunnisteteksti ja näytä se lomakkeessa
+fetch('../load_footer.php')
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('footerText').value = data.text;
+    });
+
     let editHeadingMode = false;
     let sectionCounter = 2; // Start counter at 2 since we already have sections 1 and 2
     
@@ -621,6 +655,7 @@
         button.innerHTML = editLogoMode ? "Save" : "Edit";
     }
 </script>
+
     </head>
     <body>
         <div class="ylapalkki">
@@ -695,13 +730,6 @@
                     ut isteaccusantium autlaudantium adipisci aut debitis harum eos quae quae.
                     Et veritatis provident eum perferendis quis cum dolorum quaerat ut molestias obcaecati sed quia labore!</p>
                 <p>@ 2024, Companys name, All rights reserved</p>    
-            </div>
-            <div class="column2"> 
-                <div class="footer-linkit">
-                    <a href="#" id="Home">Home</a>
-                    <a href="#" id="About">About</a>
-                    <a href="#" id="Blog">Blog</a>
-                </div> 
             </div>
             <div id="link-list"></div>
             <div id="new-link-form">
