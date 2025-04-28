@@ -17,18 +17,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <head>
         <title>Admin Pääsivu</title>
         <link rel="stylesheet" href="index.css">
-        <form method="post" action="index.php">
-    <label for="footerText">Alatunnisteen teksti:</label><br>
-    <input type="text" id="footerText" name="footerText"><br><br>
-    <input type="submit" value="Tallenna">
-</form>
-
-<form action="upload_logo.php" method="post" enctype="multipart/form-data">
-    <label>Valitse logokuva:</label><br>
-    <input type="file" name="logo"><br><br>
-    <input type="submit" value="Lataa Logo">
-</form>
-
 
 <script>
 // Hae nykyinen alatunnisteteksti ja näytä se lomakkeessa
@@ -663,11 +651,6 @@ fetch('../load_footer.php')
             <input id="logoInput" type="text" placeholder="Image URL" hidden>
             <button id="logoBtn" onclick="handleLogoEdit()">Edit</button>
 
-            <div class="linkit">
-                <a href="#" id="Home">Home</a>
-                <a href="#" id="About">About</a>
-                <a href="#" id="Blog">Blog</a>
-            </div>
         </div>
         <div class="section">
             <div class="textimage1">
@@ -723,6 +706,17 @@ fetch('../load_footer.php')
         </div>
         <div class="footer">
             <div class="column1">
+            <form method="post" action="index.php">
+            <label for="footerText">Alatunnisteen teksti:</label><br>
+            <input type="text" id="footerText" name="footerText"><br><br>
+            <input type="submit" value="Tallenna">
+            </form>
+
+            <form action="upload_logo.php" method="post" enctype="multipart/form-data">
+            <label>Valitse logokuva:</label><br>
+            <input type="file" name="logo"><br><br>
+            <input type="submit" value="Lataa Logo">
+        </form>
                 <h1 id="title"></h1>
                 <input id="titleInput" hidden>
                 <button id="titleButton" onclick="handleHeadingEdit()">Edit</button>
