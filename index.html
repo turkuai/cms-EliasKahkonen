@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Pääsivu</title>
+        <link rel="stylesheet" href="index.css">
+
+        <script>
+            function handleLoad() {
+                // Load footer title
+                const title = localStorage.getItem("title");
+                if (title) {
+                    // Fix: Get all elements with ID "title" (there were duplicates in the original HTML)
+                    const titleElements = document.querySelectorAll("#title");
+                    titleElements.forEach(element => {
+                        element.innerHTML = title;
+                    });
+                }
+            
+                // Load logo
+                const savedLogo = localStorage.getItem("logo-url");
+                if (savedLogo) {
+                    document.getElementById("kuva1").src = savedLogo;
+                }
+                
+                // Load section 1 heading
+                const section1Heading = localStorage.getItem("section1-heading");
+                if (section1Heading) {
+                    document.getElementById("section1-heading").innerHTML = section1Heading;
+                }
+                
+                // Load section 1 image
+                const section1Image = localStorage.getItem("section1-image");
+                if (section1Image) {
+                    document.getElementById("kuva2").src = section1Image;
+                }
+                
+                // Load section 2 heading
+                const section2Heading = localStorage.getItem("section2-heading");
+                if (section2Heading) {
+                    document.getElementById("section2-heading").innerHTML = section2Heading;
+                }
+                
+                // Load section 2 image
+                const section2Image = localStorage.getItem("section2-image");
+                if (section2Image) {
+                    document.getElementById("kuva3").src = section2Image;
+                }
+            
+                // Load dynamic links
+                const savedLinks = localStorage.getItem("links-list");
+                const linksList = savedLinks ? JSON.parse(savedLinks) : [];
+                const footerLinkContainer = document.querySelector(".column3 .footer-linkit");
+            
+                if (footerLinkContainer) {
+                    // Clear existing links
+                    footerLinkContainer.innerHTML = "";
+            
+                    // Add stored links
+                    linksList.forEach(link => {
+                        const aElement = document.createElement("a");
+                        aElement.href = link.href;
+                        aElement.innerText = link.name;
+                        footerLinkContainer.appendChild(aElement);
+                    });
+                }
+                
+                // Load dynamic sections
+                loadDynamicSections();
+            }
+            
+            // Function to load dynamically created sections from admin page
+            function loadDynamicSections() {
+                const savedSections = localStorage.getItem("dynamic-sections");
+                if (savedSections) {
+                    const sectionsData = JSON.parse(savedSections);
+                    const sectionsContainer = document.getElementById("dynamic-sections");
+                    
+                    // Create each section from saved data
+                    sectionsData.forEach(section => {
+                        // Create section container
+                        const sectionDiv = document.createElement("div");
+                        sectionDiv.className = "textimage1";
+                        
+                        // Create text content
+                        const textDiv = document.createElement("div");
+                        textDiv.className = "teksti";
+                        
+                        // Add heading
+                        const heading = document.createElement("h1");
+                        heading.innerHTML = section.heading;
+                        
+                        // Add paragraph 
+                        const paragraph = document.createElement("p");
+                        paragraph.innerHTML = "Lorem ipsum dolor sit amet. Aut blanditiis eaque eum dignissimos dicta aut architecto expedita ut praesentium assumenda est sint adipisci. Aut aperiam iste ut sunt libero ea culpa veritatis rem architecto dolores quo explicabo eligendi est deleniti consectetur et aliquam consectetur.";
+                        
+                        // Add text elements to text container
+                        textDiv.appendChild(heading);
+                        textDiv.appendChild(paragraph);
+                        
+                        // Create image
+                        const img = document.createElement("img");
+                        img.width = 450;
+                        img.height = 300;
+                        
+                        if (section.imageUrl) {
+                            img.src = section.imageUrl;
+                        }
+                        
+                        // Add text and image to section
+                        sectionDiv.appendChild(textDiv);
+                        sectionDiv.appendChild(img);
+                        
+                        // Add section to page
+                        sectionsContainer.appendChild(sectionDiv);
+                    });
+                }
+            }
+            
+            addEventListener("load", handleLoad);
+        </script>
+    </head>
+    <body>
+        <div class="ylapalkki">
+            <img src="https://download.logo.wine/logo/Porsche/Porsche-Logo.wine.png" width="210px" height="140px" id="kuva1">
+            <div class="linkit">
+                <a href="#" id="Home">Home</a>
+                <a href="#" id="About">About</a>
+                <a href="#" id="Blog">Blog</a>
+            </div>
+        </div>
+        <div class="section">
+            <div class="textimage1">
+                <div class="teksti">
+                <h1 id="section1-heading">Otsikko 1</h1>
+                <p>Lorem ipsum dolor sit amet. Aut blanditiis eaque eum dignissimos dicta aut architecto expedita ut praesentium assumenda est sint adipisci.
+                Aut aperiam iste ut sunt libero ea culpa veritatis rem architecto dolores quo explicabo eligendi est deleniti consectetur et aliquam consectetur.
+                33 eius nulla sit incidunt praesentium non omnis voluptatem ut maiores alias. Et optio accusantium a saepe suscipit sit excepturi porro a error quam et libero accusantium.
+                Lorem ipsum dolor sit amet. Aut blanditiis eaque eum dignissimos dicta aut architecto expedita ut praesentium assumenda est sint adipisci.
+                Aut aperiam iste ut sunt libero ea culpa veritatis rem architecto dolores quo explicabo eligendi est deleniti consectetur et aliquam consectetur.
+                33 eius nulla sit incidunt praesentium non omnis voluptatem ut maiores alias. Et optio accusantium a saepe suscipit sit excepturi porro a error quam et libero accusantium.</p>
+                </div>
+                <img src="https://content-hub.imgix.net/7pAtSAhW9FPTslxOpVVd93/332be8b3784aa2516a5d43e3b2da28a3/six-20things-20you-20need-20to-20know-20about-20the-20porsche-20997-206.jpg?w=1308" id="kuva2" width="450px" height="300px">
+            </div>
+            <div class="textimage1">
+                <div class="teksti">
+                <h1 id="section2-heading">Otsikko 2</h1>
+                <p>Lorem ipsum dolor sit amet. Aut blanditiis eaque eum dignissimos dicta aut architecto expedita ut praesentium assumenda est sint adipisci.
+                Aut aperiam iste ut sunt libero ea culpa veritatis rem architecto dolores quo explicabo eligendi est deleniti consectetur et aliquam consectetur.
+                33 eius nulla sit incidunt praesentium non omnis voluptatem ut maiores alias. Et optio accusantium a saepe suscipit sit excepturi porro a error quam et libero accusantium.
+                Lorem ipsum dolor sit amet. Aut blanditiis eaque eum dignissimos dicta aut architecto expedita ut praesentium assumenda est sint adipisci.
+                Aut aperiam iste ut sunt libero ea culpa veritatis rem architecto dolores quo explicabo eligendi est deleniti consectetur et aliquam consectetur.
+                33 eius nulla sit incidunt praesentium non omnis voluptatem ut maiores alias. Et optio accusantium a saepe suscipit sit excepturi porro a error quam et libero accusantium.</p>
+                </div>
+                <img src="https://images-porsche.imgix.net/-/media/E6F1452793D246FEAE326E1B2779C681_5FEF67AE27D845F487A5AC2202D1137B_020-info-slider-2-1-997-911-gt2-2008-2009?w=1299&q=85&auto=format" id="kuva3" width="450px" height="300px">
+            </div>
+            
+            <!-- Container for dynamically added sections -->
+            <div id="dynamic-sections"></div>
+        </div>
+        <div class="footer">
+            <div class="column1">
+                <h1 id="title"></h1>
+                <p>Lorem ipsum dolor sit amet. Eum doloremque dolor quo totam dicta sed voluptatem rerum
+                    ut isteaccusantium autlaudantium adipisci aut debitis harum eos quae quae.
+                    Et veritatis provident eum perferendis quis cum dolorum quaerat ut molestias obcaecati sed quia labore!</p>
+                <p>@ 2024, Companys name, All rights reserved</p>    
+            </div>
+            <div class="column2"> 
+                <div class="footer-linkit">
+                    <a href="#" id="Home">Home</a>
+                    <a href="#" id="About">About</a>
+                    <a href="#" id="Blog">Blog</a>
+                </div> 
+            </div>
+            <div class="column3">
+                <div class="footer-linkit">
+                    <!-- Dynamic links will be loaded here -->
+                </div>    
+            </div>
+        </div>
+    </body>
+</html>
