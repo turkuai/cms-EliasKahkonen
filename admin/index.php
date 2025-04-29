@@ -19,12 +19,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <link rel="stylesheet" href="index.css">
 
 <script>
-// Hae nykyinen alatunnisteteksti ja näytä se lomakkeessa
-fetch('../load_footer.php')
-    .then(response => response.json())
-    .then(data => {
-        document.getElementById('footerText').value = data.text;
-    });
 
     let editHeadingMode = false;
     let sectionCounter = 2; // Start counter at 2 since we already have sections 1 and 2
@@ -642,6 +636,12 @@ fetch('../load_footer.php')
 
         button.innerHTML = editLogoMode ? "Save" : "Edit";
     }
+    // Hae nykyinen alatunnisteteksti ja näytä se lomakkeessa
+fetch('../load_footer.php')
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('title').value = data.text;
+    });
 </script>
 
     </head>
