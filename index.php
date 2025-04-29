@@ -7,13 +7,6 @@
         <footer id="siteFooter"></footer>
 
 <script>
-// Hae alatunnisteteksti ja näytä se footerissa
-fetch('load_footer.php')
-    .then(response => response.json())
-    .then(data => {
-        document.getElementById('siteFooter').innerText = data.text;
-    });
-
             function handleLoad() {
                 // Load footer title
                 const title = localStorage.getItem("title");
@@ -126,6 +119,13 @@ fetch('load_footer.php')
             }
             
             addEventListener("load", handleLoad);
+
+            // Hae alatunnisteteksti ja näytä se footerissa
+fetch('load_footer.php')
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('title').innerText = data.text;
+    });
         </script>
     </head>
     <body>
