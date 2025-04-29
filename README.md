@@ -8,5 +8,5 @@ Github: https://turkuai.github.io/cms-EliasKahkonen/
 Netlify: https://68074bb62fda4757770f3287--eliasindex.netlify.app/
 
 Koulun palvelin:
-http://taikukkula.fi/EliasKahkonen/cms/
+(http://taikukkula.fi/tiev23n/elias/cms/)
 
